@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MiniAccountManagementSystem.Data;
+using MiniAccountManagementSystem.Data.Repositories.Interfaces;
+using MiniAccountManagementSystem.Data.Repositories;
 
 namespace MiniAccountManagementSystem
 {
@@ -18,6 +20,10 @@ namespace MiniAccountManagementSystem
             builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
+            builder.Services.AddScoped<IRolePermissionRepository, RolePermissionRepository>();
 
             var app = builder.Build();
 
