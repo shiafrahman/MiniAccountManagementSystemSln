@@ -8,4 +8,9 @@
         public int? ParentAccountId { get; set; }
         public string AccountType { get; set; }
     }
+    public class AccountNode
+    {
+        public Account Account { get; set; }
+        public List<AccountNode> Children { get; set; } = new List<AccountNode>();
+    }
 }
